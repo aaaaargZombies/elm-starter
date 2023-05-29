@@ -1,0 +1,17 @@
+# elm-package generated files
+elm-stuff
+
+# elm-repl generated files
+repl-temp-*
+
+# node generated files
+node_modules
+npm-debug.log
+
+# build files
+dist
+
+# constants and secrets
+.env
+./src/Constants.elm
+
