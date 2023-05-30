@@ -20,7 +20,7 @@ view model =
         [ HeaderTemplate.view { content = "[cCc] Header" }
         , main_ []
             [ languageSelector model
-            , img [ alt "glaciers and mountains", src "/public/simon-fitall-tvleqH3p1os-unsplash.jpg" ] []
+            , img [ alt "glaciers and mountains", src "/simon-fitall-tvleqH3p1os-unsplash.jpg" ] []
             , p []
                 [ text "Photo by "
                 , a [ href "https://unsplash.com/@simonfitall?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText" ] [ text "Simon Fitall" ]
