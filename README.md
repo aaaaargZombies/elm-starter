@@ -22,11 +22,9 @@ We recommend integrating `elm-format@0.8.6` and `prettier` into your code editor
 
 ### Test
 
-We are using [elm test](https://package.elm-lang.org/packages/elm-explorations/test/latest).
-We don't have all the time in the world, so tests will be light.
-We aim to cover any exposed API in our modules and things with potential to fail and go unnoticed.
+We are using [elm-test-rs](https://github.com/mpizenberg/elm-test-rs).
 
-- `npm test` to run `elm-test`
+- `npm test` to run
 
 ### Linting
 
@@ -40,14 +38,16 @@ This repo does not provide linting, consider adding [elm-review](https://github.
 
 ### What it's for
 
-- Static code generated with [elm](https://elm-lang.org/docs) and [[cCc]]()
+- Static code generated with [elm](https://elm-lang.org/docs) and [vite](https://vitejs.dev/guide/)
 - `elm.json` for elm packages
 - `package.json` for node scripts and packages
+- `vite.config.js` for configuring [vite](https://vitejs.dev/config/)
 - `package-lock.json` for current versions of node packages
-- `.env` for generating a `Constants.elm` via [elm-constants](https://github.com/jaredramirez/elm-constants), currently gitignored for secrets. Rename `.env.example` to test it or remove if not needed.
+- `.env` for generating a `Constants.elm` via [elm-constants](https://github.com/jaredramirez/elm-constants), currently gitignored for secrets. Rename `.env.example` to test it or remove if not needed. These variables can also be accessed in JS via [vite](https://vitejs.dev/guide/env-and-mode.html#env-variables-and-modes)
 - `[cCc]` for build config
 - `[cCc]` for deploy config
 - `src/*` contains app source files
+- `public/*` contains static assets which will live at the root of the served site
 
 ### Content & Pages
 
@@ -59,6 +59,7 @@ This repo does not provide linting, consider adding [elm-review](https://github.
 ### Styling & layouts
 
 - Vanilla CSS lives in `src/css` a reset is provided.
+- It will be added to a style element in the head of the page
 
 ## Development workflow
 
