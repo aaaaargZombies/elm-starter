@@ -13,5 +13,5 @@ dist
 
 # constants and secrets
 .env
-./src/Constants.elm
+src/Constants.elm
 
