@@ -5,7 +5,7 @@ import Browser.Navigation
 import I18n.Keys exposing (Key(..))
 import I18n.Translate exposing (Language(..), translate)
 import Route exposing (Route(..))
-import Shared exposing (Model, Msg(..))
+import Shared exposing (Model, Msg(..), Phase(..))
 import Theme.PageTemplate as PageTemplate
 import Url
 
@@ -35,6 +35,9 @@ init flags url key =
     ( { key = key
       , page = Maybe.withDefault Index maybeRoute
       , language = English
+      , pattern = { inhale = 3, exhale = 6 }
+      , phase = Inhale 3
+      , paused = True
       }
     , Cmd.none
     )

@@ -4,16 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "build": "elm-constants && vite build",
-    "dev": "elm-constants && vite",
+    "build": "vite build",
+    "dev": "vite",
     "format": "elm-format src",
     "postinstall": "elm-tooling install",
     "prepare": "husky install",
-    "test": "elm-constants && elm-test-rs"
+    "test": "elm-test-rs"
   },
   "devDependencies": {
     "elm": "0.19.1-5",
-    "elm-constants": "^1.0.0",
     "elm-tooling": "1.13.0",
     "husky": "^8.0.3",
     "prettier": "2.8.4",
