@@ -14,3 +14,15 @@ enStrings key =
 
         ChangeLanguage ->
             "[cCc] change lang"
+
+        UnpauseBtn ->
+            "Start"
+
+        PauseBtn ->
+            "Stop"
+
+        ExhaleText ->
+            "Out"
+
+        InhaleText ->
+            "In"

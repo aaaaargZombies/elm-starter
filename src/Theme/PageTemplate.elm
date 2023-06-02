@@ -1,11 +1,12 @@
 module Theme.PageTemplate exposing (..)
 
-import Html exposing (Html, a, div, img, li, main_, p, text, ul)
+import Html exposing (Html, a, button, div, img, li, main_, p, text, ul)
 import Html.Attributes exposing (alt, attribute, href, src)
+import Html.Events exposing (onClick)
 import I18n.Keys exposing (Key(..))
 import I18n.Translate exposing (Language(..), translate)
 import Route exposing (Route(..))
-import Shared exposing (Model, Msg(..))
+import Shared exposing (Model, Msg(..), Phase(..))
 import Theme.FooterTemplate as FooterTemplate
 import Theme.HeaderTemplate as HeaderTemplate
 
@@ -33,6 +34,35 @@ languageSelector model =
     in
     case model.page of
         Index ->
+            let
+                n =
+                    case model.phase of
+                        Inhale i ->
+                            String.fromInt i
+
+                        Exhale i ->
+                            String.fromInt i
+
+                btnTxt =
+                    if model.paused then
+                        UnpauseBtn
+
+                    else
+                        PauseBtn
+
+                phaseTxt =
+                    case model.phase of
+                        Inhale _ ->
+                            InhaleText
+
+                        Exhale _ ->
+                            ExhaleText
+            in
             div []
-                [ p [] [ text (t PageTitle) ]
+                [ p [] [ text (t phaseTxt) ]
+                , p []
+                    [ text n ]
+                , button
+                    [ onClick PauseUnpause ]
+                    [ text (t btnTxt) ]
                 ]

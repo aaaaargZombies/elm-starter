@@ -4,6 +4,7 @@ import Browser
 import Browser.Navigation
 import I18n.Translate exposing (Language(..))
 import Route exposing (Route(..))
+import Time
 import Url
 
 
@@ -33,3 +34,5 @@ type Phase
 type Msg
     = UrlChanged Url.Url
     | LinkClicked Browser.UrlRequest
+    | Tick Time.Posix
+    | PauseUnpause

@@ -7,6 +7,7 @@ import I18n.Translate exposing (Language(..), translate)
 import Route exposing (Route(..))
 import Shared exposing (Model, Msg(..), Phase(..))
 import Theme.PageTemplate as PageTemplate
+import Time
 import Url
 
 
@@ -67,10 +68,35 @@ update msg model =
                     , Browser.Navigation.load href
                     )
 
+        Tick _ ->
+            case model.phase of
+                Inhale i ->
+                    case i of
+                        0 ->
+                            ( { model | phase = Exhale model.pattern.exhale }, Cmd.none )
+
+                        _ ->
+                            ( { model | phase = Inhale (i - 1) }, Cmd.none )
+
+                Exhale i ->
+                    case i of
+                        0 ->
+                            ( { model | phase = Inhale model.pattern.inhale }, Cmd.none )
+
+                        _ ->
+                            ( { model | phase = Exhale (i - 1) }, Cmd.none )
+
+        PauseUnpause ->
+            ( { model | paused = not model.paused }, Cmd.none )
+
 
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+    if model.paused then
+        Sub.none
+
+    else
+        Time.every 1000 Tick
 
 
 viewDocument : Model -> Browser.Document Msg

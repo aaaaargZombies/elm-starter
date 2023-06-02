@@ -5,3 +5,7 @@ type Key
     = PageTitle
     | SiteTitle
     | ChangeLanguage
+    | UnpauseBtn
+    | PauseBtn
+    | ExhaleText
+    | InhaleText
