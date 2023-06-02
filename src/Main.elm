@@ -1,4 +1,4 @@
-module Main exposing (main)
+port module Main exposing (main)
 
 import Browser
 import Browser.Navigation
@@ -25,6 +25,9 @@ main =
         , onUrlRequest = LinkClicked
         , onUrlChange = UrlChanged
         }
+
+
+port noise : Int -> Cmd msg
 
 
 init : Flags -> Url.Url -> Browser.Navigation.Key -> ( Model, Cmd Msg )
@@ -73,18 +76,18 @@ update msg model =
                 Inhale i ->
                     case i of
                         0 ->
-                            ( { model | phase = Exhale model.pattern.exhale }, Cmd.none )
+                            ( { model | phase = Exhale model.pattern.exhale }, noise i )
 
                         _ ->
-                            ( { model | phase = Inhale (i - 1) }, Cmd.none )
+                            ( { model | phase = Inhale (i - 1) }, noise i )
 
                 Exhale i ->
                     case i of
                         0 ->
-                            ( { model | phase = Inhale model.pattern.inhale }, Cmd.none )
+                            ( { model | phase = Inhale model.pattern.inhale }, noise i )
 
                         _ ->
-                            ( { model | phase = Exhale (i - 1) }, Cmd.none )
+                            ( { model | phase = Exhale (i - 1) }, noise i )
 
         PauseUnpause ->
             ( { model | paused = not model.paused }, Cmd.none )
