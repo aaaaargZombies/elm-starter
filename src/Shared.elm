@@ -22,6 +22,8 @@ type alias Model =
     }
 
 
+{-| Zero indexed measure of time in seconds
+-}
 type alias Pattern =
     { inhale : Int
     , exhale : Int
