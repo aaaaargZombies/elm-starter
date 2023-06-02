@@ -1,8 +1,10 @@
-module Shared exposing (Model, Msg(..), Pattern, Phase(..))
+module Shared exposing (Model, Msg(..), Pattern, Phase(..), encodedPattern, patterDecoder)
 
 import Browser
 import Browser.Navigation
 import I18n.Translate exposing (Language(..))
+import Json.Decode
+import Json.Encode
 import Route exposing (Route(..))
 import Time
 import Url
@@ -36,3 +38,18 @@ type Msg
     | LinkClicked Browser.UrlRequest
     | Tick Time.Posix
     | PauseUnpause
+
+
+patterDecoder : Json.Decode.Decoder Pattern
+patterDecoder =
+    Json.Decode.map2 Pattern
+        (Json.Decode.field "exhale" Json.Decode.int)
+        (Json.Decode.field "inhale" Json.Decode.int)
+
+
+encodedPattern : Pattern -> Json.Encode.Value
+encodedPattern pattern =
+    Json.Encode.object
+        [ ( "exhale", Json.Encode.int pattern.exhale )
+        , ( "inhale", Json.Encode.int pattern.inhale )
+        ]
