@@ -26,3 +26,9 @@ enStrings key =
 
         InhaleText ->
             "In"
+
+        TopText ->
+            "Hold"
+
+        BottomText ->
+            "Hold"

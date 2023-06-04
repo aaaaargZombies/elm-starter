@@ -40,7 +40,13 @@ languageSelector model =
                         Inhale i ->
                             String.fromInt i
 
+                        Top i ->
+                            String.fromInt i
+
                         Exhale i ->
+                            String.fromInt i
+
+                        Bottom i ->
                             String.fromInt i
 
                 btnTxt =
@@ -57,6 +63,12 @@ languageSelector model =
 
                         Exhale _ ->
                             ExhaleText
+
+                        Top _ ->
+                            TopText
+
+                        Bottom _ ->
+                            BottomText
             in
             div []
                 [ p [] [ text (t phaseTxt) ]

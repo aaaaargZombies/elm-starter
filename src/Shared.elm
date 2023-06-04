@@ -26,13 +26,17 @@ type alias Model =
 -}
 type alias Pattern =
     { inhale : Int
+    , top : Int
     , exhale : Int
+    , bottom : Int
     }
 
 
 type Phase
     = Inhale Int
+    | Top Int
     | Exhale Int
+    | Bottom Int
 
 
 type Msg
@@ -44,14 +48,18 @@ type Msg
 
 patterDecoder : Json.Decode.Decoder Pattern
 patterDecoder =
-    Json.Decode.map2 Pattern
+    Json.Decode.map4 Pattern
         (Json.Decode.field "exhale" Json.Decode.int)
+        (Json.Decode.field "top" Json.Decode.int)
         (Json.Decode.field "inhale" Json.Decode.int)
+        (Json.Decode.field "bottom" Json.Decode.int)
 
 
 encodedPattern : Pattern -> Json.Encode.Value
 encodedPattern pattern =
     Json.Encode.object
         [ ( "exhale", Json.Encode.int pattern.exhale )
+        , ( "top", Json.Encode.int pattern.inhale )
         , ( "inhale", Json.Encode.int pattern.inhale )
+        , ( "bottom", Json.Encode.int pattern.inhale )
         ]

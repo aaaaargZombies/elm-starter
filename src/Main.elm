@@ -39,7 +39,7 @@ init flags url key =
     ( { key = key
       , page = Maybe.withDefault Index maybeRoute
       , language = English
-      , pattern = { inhale = 2, exhale = 5 }
+      , pattern = { inhale = 2, exhale = 5, top = 0, bottom = 0 }
       , phase = Inhale 3
       , paused = True
       }
@@ -76,18 +76,34 @@ update msg model =
                 Inhale i ->
                     case i of
                         0 ->
-                            ( { model | phase = Exhale model.pattern.exhale }, noise i )
+                            ( { model | phase = Top model.pattern.top }, noise i )
 
                         _ ->
                             ( { model | phase = Inhale (i - 1) }, noise i )
 
+                Top i ->
+                    case i of
+                        0 ->
+                            ( { model | phase = Exhale model.pattern.exhale }, noise i )
+
+                        _ ->
+                            ( { model | phase = Top (i - 1) }, noise i )
+
                 Exhale i ->
+                    case i of
+                        0 ->
+                            ( { model | phase = Bottom model.pattern.bottom }, noise i )
+
+                        _ ->
+                            ( { model | phase = Exhale (i - 1) }, noise i )
+
+                Bottom i ->
                     case i of
                         0 ->
                             ( { model | phase = Inhale model.pattern.inhale }, noise i )
 
                         _ ->
-                            ( { model | phase = Exhale (i - 1) }, noise i )
+                            ( { model | phase = Bottom (i - 1) }, noise i )
 
         PauseUnpause ->
             ( { model | paused = not model.paused }, Cmd.none )

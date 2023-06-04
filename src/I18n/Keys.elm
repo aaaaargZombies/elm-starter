@@ -9,3 +9,5 @@ type Key
     | PauseBtn
     | ExhaleText
     | InhaleText
+    | TopText
+    | BottomText
