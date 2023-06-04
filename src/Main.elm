@@ -40,7 +40,7 @@ init flags url key =
       , page = Maybe.withDefault Index maybeRoute
       , language = English
       , pattern = { inhale = 2, exhale = 5, top = 0, bottom = 0 }
-      , phase = Inhale 3
+      , phase = Inhale 2
       , paused = True
       }
     , Cmd.none

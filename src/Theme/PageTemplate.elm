@@ -38,16 +38,16 @@ languageSelector model =
                 n =
                     case model.phase of
                         Inhale i ->
-                            String.fromInt i
+                            String.fromInt (i + 1)
 
                         Top i ->
-                            String.fromInt i
+                            String.fromInt (i + 1)
 
                         Exhale i ->
-                            String.fromInt i
+                            String.fromInt (i + 1)
 
                         Bottom i ->
-                            String.fromInt i
+                            String.fromInt (i + 1)
 
                 btnTxt =
                     if model.paused then
