@@ -76,7 +76,11 @@ update msg model =
                 Inhale i ->
                     case i of
                         0 ->
-                            ( { model | phase = Top model.pattern.top }, noise i )
+                            if model.pattern.top == 0 then
+                                ( { model | phase = Exhale model.pattern.exhale }, noise i )
+
+                            else
+                                ( { model | phase = Top model.pattern.top }, noise i )
 
                         _ ->
                             ( { model | phase = Inhale (i - 1) }, noise i )
@@ -92,7 +96,11 @@ update msg model =
                 Exhale i ->
                     case i of
                         0 ->
-                            ( { model | phase = Bottom model.pattern.bottom }, noise i )
+                            if model.pattern.bottom == 0 then
+                                ( { model | phase = Inhale model.pattern.inhale }, noise i )
+
+                            else
+                                ( { model | phase = Bottom model.pattern.bottom }, noise i )
 
                         _ ->
                             ( { model | phase = Exhale (i - 1) }, noise i )
