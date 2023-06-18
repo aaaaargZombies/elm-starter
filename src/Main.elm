@@ -4,6 +4,8 @@ import Browser
 import Browser.Navigation
 import I18n.Keys exposing (Key(..))
 import I18n.Translate exposing (Language(..), translate)
+import Page.Index
+import Page.UhOh
 import Route exposing (Route(..))
 import Shared exposing (Model, Msg(..))
 import Theme.PageTemplate as PageTemplate
@@ -33,7 +35,7 @@ init flags url key =
             Route.fromUrl url
     in
     ( { key = key
-      , page = Maybe.withDefault Index maybeRoute
+      , page = Maybe.withDefault UhOh maybeRoute
       , language = English
       }
     , Cmd.none
@@ -48,7 +50,7 @@ update msg model =
                 newRoute =
                     -- If not a valid route, go to index
                     -- could 404 instead depends on desired behaviour
-                    Maybe.withDefault Index (Route.fromUrl url)
+                    Maybe.withDefault UhOh (Route.fromUrl url)
             in
             ( { model | page = newRoute }, Cmd.none )
 
@@ -72,4 +74,9 @@ subscriptions model =
 
 viewDocument : Model -> Browser.Document Msg
 viewDocument model =
-    { title = translate model.language SiteTitle, body = [ PageTemplate.view model ] }
+    case model.page of
+        Index ->
+            { title = translate model.language SiteTitle, body = [ PageTemplate.view (Page.Index.view model) ] }
+
+        UhOh ->
+            { title = translate model.language SiteTitle, body = [ PageTemplate.view Page.UhOh.view ] }

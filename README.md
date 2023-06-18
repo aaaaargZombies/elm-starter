@@ -43,7 +43,7 @@ This repo does not provide linting, consider adding [elm-review](https://github.
 - `package.json` for node scripts and packages
 - `vite.config.js` for configuring [vite](https://vitejs.dev/config/)
 - `package-lock.json` for current versions of node packages
-- `.env` for generating a `Constants.elm` via [elm-constants](https://github.com/jaredramirez/elm-constants), currently gitignored for secrets. Rename `.env.example` to test it or remove if not needed. These variables can also be accessed in JS via [vite](https://vitejs.dev/guide/env-and-mode.html#env-variables-and-modes)
+- `.env` for storing constants, currently gitignored for secrets. Rename `.env.example` to test it or remove if not needed. These variables can be accessed in JS via [vite](https://vitejs.dev/guide/env-and-mode.html#env-variables-and-modes) and passed into the elm app as flags. Alternatively generate a `Constants.elm` module by installing and running [elm-constants](https://github.com/jaredramirez/elm-constants).
 - `[cCc]` for build config
 - `[cCc]` for deploy config
 - `src/*` contains app source files

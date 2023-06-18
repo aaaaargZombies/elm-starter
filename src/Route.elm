@@ -6,6 +6,7 @@ import Url.Parser as Parser exposing (Parser, map, oneOf, top)
 
 type Route
     = Index
+    | UhOh
 
 
 fromUrl : Url.Url -> Maybe Route
@@ -19,6 +20,9 @@ toString route =
     case route of
         Index ->
             "/"
+
+        UhOh ->
+            "/404"
 
 
 routeParser : Parser (Route -> a) a
